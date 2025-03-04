@@ -1,0 +1,120 @@
+@import "tailwindcss";
+
+@layer base {
+    @font-face {
+        font-family: "Cooper Black";
+        src: url('/src/assets/fonts/CooperBlack-Std.ttf') format('truetype');
+    }
+}
+
+@theme {
+    --font-display: 'Cooper Black', 'serif';
+    --font-sub: 'Indie Flower', 'cursive';
+}
+
+:root {
+    --faxe-magenta: #e6007d;
+    --faxe-yellow: #f59e24;
+    --faxe-green: #007c40;
+    --faxe-blue: #027fc9;
+    --faxe-bg-green: #154734;
+}
+html {
+    background-color: var(--faxe-bg-green);
+}
+body {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+}
+
+.living-room {
+    visibility: visible;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.living-room .dialogue-box {
+    position: absolute;
+    text-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4);
+    font-size: 1.5rem;
+    font-family: var(--font-sub);
+    font-weight: 400;
+    font-style: normal;
+}
+
+.button {
+    cursor: pointer;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    color: white;
+    pointer-events: auto;
+}
+
+.loading-lable {
+    position: absolute;
+    top: 40%;
+    left: 20%;
+    font-family: var(--font-display);
+    font-size: 4rem;
+    color: oklch(0.852 0.199 91.936);
+    transform: scale(1);
+    transform-origin: center right;
+    transition: transform 0.4s;
+    will-change: transform;
+}
+
+.loading-bars {
+    box-shadow: 0px 0px 20px rgba(255, 0, 0, 1.);
+}
+
+.loading-bar {
+    position: absolute;
+    top: 50%;
+    left: 0px;
+    width: 100%;
+    height: 20px;
+    transform-origin: top left;
+    transition: transform 0.4s;
+    transform: scaleX(0) translateX(0%) translateY(0%);
+    will-change: transform;
+    pointer-events: none;
+}
+
+.magenta-loading-bar {
+    background-color: #e6007d;
+}
+.yellow-loading-bar {
+    background-color: #f59e24;
+}
+.green-loading-bar {
+    background-color: #007c40;
+}
+.blue-loading-bar {
+    background-color: #027fc9;
+}
+
+.loading-ended {
+    transform-origin: top right;
+    transition: transform 1.5s ease-in-out;
+}
+
+.visible {
+    visibility: visible;
+}
+
+.hidden {
+    visibility: hidden;
+}
