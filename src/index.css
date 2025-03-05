@@ -5,6 +5,10 @@
         font-family: "Cooper Black";
         src: url('/src/assets/fonts/CooperBlack-Std.ttf') format('truetype');
     }
+    @font-face {
+        font-family: "Indie Flower";
+        src: url('/src/assets/fonts/Indie_Flower/IndieFlower-Regular.ttf') format('truetype');
+    }
 }
 
 @theme {
@@ -14,8 +18,8 @@
 
 :root {
     --faxe-magenta: #e6007d;
-    --faxe-yellow: #f59e24;
-    --faxe-green: #007c40;
+    --faxe-yellow: #fef202;
+    --faxe-green: #154734;
     --faxe-blue: #027fc9;
     --faxe-bg-green: #154734;
 }
@@ -30,6 +34,51 @@ body {
     position: absolute;
 }
 
+.slogan {
+    font-family: var(--font-sub);
+    font-weight: 400;
+    font-style: normal;
+    color: var(--faxe-yellow);
+    font-size: 2.5rem;
+    text-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    transition: opacity 0.2s;
+    will-change: opacity;
+}
+
+.sub-text {
+    font-family: var(--font-sub);
+    font-weight: 400;
+    font-style: normal;
+    color: var(--faxe-yellow);
+    font-size: 1.5rem;
+    text-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    transition: opacity 0.2s;
+    will-change: opacity;
+}
+
+.on-off-button {
+    cursor: pointer;
+    position: absolute;
+    opacity: 0;
+    transform: translate(-50% -50%);
+    top: 50%;
+    left: 50%;
+    font-size: 1.5rem;
+    font-family: var(--font-sub);
+    font-weight: 400;
+    font-style: normal;
+    color: white;
+    pointer-events: auto;
+    transition: opacity 0.4s;
+    will-change: opacity;
+}
+
+.hover-button:hover {
+    color: var(--faxe-magenta);
+}
+
 .living-room {
     visibility: visible;
     position: absolute;
@@ -38,29 +87,75 @@ body {
     width: 100%;
     height: 100%;
     pointer-events: none;
+    transition: opacity 0.4s;
+    will-change: opacity;
 }
 
-.living-room .dialogue-box {
+.living-room-2 {
+    visibility: visible;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    transition: opacity 0.4s;
+    will-change: opacity;
+}
+
+.dialogue-box {
     position: absolute;
     text-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4);
     font-size: 1.5rem;
     font-family: var(--font-sub);
     font-weight: 400;
     font-style: normal;
+    transition: opacity 0.4s;
+    will-change: opacity;
+    pointer-events: help;
+    color: var(--faxe-yellow);
+}
+
+.dialogue-box button {
+    cursor: pointer;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    padding-top: 5px;
+    color: white;
+    pointer-events: auto;
+    opacity: 0;
+    transition: opacity 0.4s;
+    will-change: opacity;
 }
 
 .button {
-    cursor: pointer;
-    position: absolute;
+    position: relative;
     top: 0px;
     left: 0px;
-    background-color: rgba(0, 0, 0, 0.5);
-    padding-top: 1.5rem;
-    padding-bottom: 1.5rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding-top: 5px;
     color: white;
+    text-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4);
+    font-size: 1.5rem;
+    font-family: var(--font-sub);
+    font-weight: 400;
+    font-style: normal;
+    transition: opacity 0.4s;
+    will-change: opacity;
+}
+
+.sid-ned-button {
+    cursor: pointer;
     pointer-events: auto;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.arrow{
+    height: 30px;
 }
 
 .loading-lable {
@@ -69,7 +164,7 @@ body {
     left: 20%;
     font-family: var(--font-display);
     font-size: 4rem;
-    color: oklch(0.852 0.199 91.936);
+    color: var(--faxe-yellow);
     transform: scale(1);
     transform-origin: center right;
     transition: transform 0.4s;
@@ -94,16 +189,16 @@ body {
 }
 
 .magenta-loading-bar {
-    background-color: #e6007d;
+    background-color: var(--faxe-magenta);
 }
 .yellow-loading-bar {
     background-color: #f59e24;
 }
 .green-loading-bar {
-    background-color: #007c40;
+    background-color: var(--faxe-green);
 }
 .blue-loading-bar {
-    background-color: #027fc9;
+    background-color: var(--faxe-blue);
 }
 
 .loading-ended {
@@ -112,9 +207,47 @@ body {
 }
 
 .visible {
-    visibility: visible;
+    opacity: 1;
 }
 
 .hidden {
-    visibility: hidden;
+    opacity: 0;
+}
+
+.footer-trans {
+    position: relative;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    height: 400px;
+    background: linear-gradient(to bottom, rgba(21, 71, 52, 0) 0%, rgba(21, 71, 52, 1) 100%);
+    color: var(--faxe-yellow);
+    font-family: var(--font-sub);
+    font-size: 1.5rem;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+}
+
+.footer {
+    position: relative;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    height: 50vh;
+    background: var(--faxe-green);
+    color: var(--faxe-yellow);
+    font-family: var(--font-sub);
+    font-size: 1.5rem;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+}
+
+canvas {
+    z-index: -1;
 }

@@ -1,8 +1,20 @@
+// Models
 import model from '../assets/models/fish.glb'
 import livingRoom from '../assets/models/livingRoom.glb'
 import foxModel from '../assets/models/Fox/glTF/Fox.gltf'
-import andModel from '../assets/models/and.glb'
 import icebergModel from '../assets/models/iceberg.glb'
+import faxeKondiModel from '../assets/models/faxeKondi.glb'
+import faxeKondiFloatModel from '../assets/models/faxeKondiFloat.glb'
+import faxeModel from '../assets/models/faxe.glb'
+import kondiModel from '../assets/models/kondi.glb'
+
+// Audio
+import rallySound from '../assets/sounds/fodbold.mp3'
+import waterSound from '../assets/sounds/waves.mp3'
+import underWaterSound from '../assets/sounds/underWater.mp3'
+import splashSound from '../assets/sounds/splash.mp3'
+
+// Textures
 import px from '../assets/environmentMaps/0/px.jpg'
 import nx from '../assets/environmentMaps/0/nx.jpg'
 import py from '../assets/environmentMaps/0/py.jpg'
@@ -49,13 +61,53 @@ export default [
         path: waterNormals
     },
     {
-        name: 'andModel',
+        name: 'faxeKondiModel',
         type: 'gltf',
-        path: andModel
+        path: faxeKondiModel
+    },
+    {
+        name: 'faxeKondi2Model',
+        type: 'gltf',
+        path: faxeKondiModel
     },
     {
         name: 'icebergModel',
         type: 'gltf',
         path: icebergModel
+    },
+    {
+        name: 'rallySound',
+        type: 'audio',
+        path: rallySound
+    },
+    {
+        name: 'waterSound',
+        type: 'audio',
+        path: waterSound
+    },
+    {
+        name: 'underWaterSound',
+        type: 'audio',
+        path: underWaterSound
+    },
+    {
+        name: 'splashSound',
+        type: 'audio',
+        path: splashSound
+    },
+    {
+        name: 'faxeModel',
+        type: 'gltf',
+        path: faxeModel
+    },
+    {
+        name: 'kondiModel',
+        type: 'gltf',
+        path: kondiModel
+    },
+    {
+        name: 'faxeKondiFloatModel',
+        type: 'gltf',
+        path: faxeKondiFloatModel
     },
 ]

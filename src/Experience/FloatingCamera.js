@@ -26,7 +26,7 @@ export default class FloatingCamera extends Camera {
 
     setOrbitControls() {
         this.controls = new OrbitControls(this.instance, this.canvas)
-        this.controls.enabled = false
+        //this.controls.enabled = false
     }
 
     update() {
@@ -37,7 +37,7 @@ export default class FloatingCamera extends Camera {
         );
         this.pos = new THREE.Vector3(
           this.instance.position.x,
-          this.waterSurfaceInfo.position.y + 4,
+          this.waterSurfaceInfo.position.y + 5,
           this.instance.position.z
         );
         this.instance.position.lerp(this.pos, 0.1);

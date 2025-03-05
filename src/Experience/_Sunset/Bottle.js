@@ -9,8 +9,7 @@ export default class Bottle {
         this.scene = this.experience.scene2
         
         // Setup
-        this.resource = this.resources.items.andModel
-
+        this.resource = this.resources.items.faxeKondiModel
         this.setModel()
     }
 
@@ -20,13 +19,13 @@ export default class Bottle {
             if(child.isMesh) {
                 child.castShadow = true
                 child.receiveShadow = true
+                child.geometry.translate(0, 0.1, 0);
+                child.geometry.rotateY(-Math.PI/2);
             }
         })
-        const scale = 1.5;
-        this.model.position.set(-5, 0, 80);
-        this.model.children[0].geometry.rotateY(Math.PI * 1.5);
-        this.model.children[0].geometry.translate(0, -0.2, 0);
-        this.model.children[0].material.roughness = 0.5;
+        const scale = 5;
+        this.model.position.set(-12, 0, 80);
+        this.model.scale.set(scale, scale, scale);
 
         this.scene.add(this.model)
     }
@@ -39,6 +38,6 @@ export default class Bottle {
           this.quat = new THREE.Quaternion().setFromEuler(
             new THREE.Euler(this.waterSurfaceInfo.normal.x, this.waterSurfaceInfo.normal.y, this.waterSurfaceInfo.normal.z)
           );
-        this.model.quaternion.rotateTowards(this.quat, this.experience.time.delta * 0.2);
+        this.model.quaternion.rotateTowards(this.quat, this.experience.time.delta * 0.18);
     }
 }

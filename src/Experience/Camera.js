@@ -18,6 +18,8 @@ export default class Camera {
         this.interpolatedLookAt = new THREE.Vector3()
         this.goToLookAt = new THREE.Vector3()
         this.goToPos = new THREE.Vector3()
+        this.lerpStep = 0.005
+        this.lookAtLerpStep = 0.01
 
         // Setup
         this.setInstance()
@@ -47,8 +49,8 @@ export default class Camera {
     }
 
     update() {
-        if(!this.debug.active) this.instance.position.lerp(this.goToPos, 0.005)
-        if(!this.debug.active) this.instance.lookAt(this.interpolatedLookAt.lerp(this.goToLookAt, 0.01))
+        if(!this.debug.active) this.instance.position.lerp(this.goToPos, this.lerpStep)
+        if(!this.debug.active) this.instance.lookAt(this.interpolatedLookAt.lerp(this.goToLookAt, this.lookAtLerpStep))
 
         if(this.debug.active) this.controls.update()
 

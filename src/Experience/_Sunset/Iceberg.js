@@ -22,8 +22,8 @@ export default class Iceberg {
                 child.receiveShadow = true
             }
         })
-        const scale = 40;
-        this.model.position.set(50,0,-50);
+        const scale = 200;
+        this.model.position.set(-1200,0,-1200);
         this.model.scale.set(scale, scale, scale);
         this.model.children[0].geometry.rotateZ(0);
         this.model.children[0].geometry.rotateY(Math.PI/0.8);
@@ -39,7 +39,7 @@ export default class Iceberg {
         this.waterSurfaceInfo = this.experience.world2.water.getWaterSurfaceInfo(this.model.position.x, this.model.position.z, this.t);
         this.model.position.y = this.waterSurfaceInfo.position.y;
           this.quat = new THREE.Quaternion().setFromEuler(
-            new THREE.Euler(this.waterSurfaceInfo.normal.x, this.waterSurfaceInfo.normal.y, this.waterSurfaceInfo.normal.z)
+            new THREE.Euler(this.waterSurfaceInfo.normal.x, this.model.rotation.y, this.waterSurfaceInfo.normal.z)
           );
         this.model.quaternion.rotateTowards(this.quat, this.experience.time.delta * 0.2);
     }

@@ -3,6 +3,8 @@ import Experience from '../Experience.js'
 import Fish from './Fish.js'
 import MouseIndicator from './MouseIndicator.js'
 import Environment from './Environment.js'
+import Html from './Html.js'
+import bottle from './bottle.js'
 
 export default class World3 {
 
@@ -22,14 +24,14 @@ export default class World3 {
         this.mouseIndicator = new MouseIndicator()
         this.fish = new Fish(this)
         this.environment = new Environment()
+        this.html = new Html()
+        this.bottle = new bottle()
     }
 
     update() {
         this.mouseIndicator.update()
-    }
-
-    sceneSettings() {
-        this.experience.renderer.instance.toneMappingExposure = 1.75;
+        this.html.update()
+        this.bottle.update()
     }
 
 

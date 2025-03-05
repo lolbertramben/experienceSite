@@ -12,8 +12,8 @@ export default class Environment {
         // Options
 
         // Setup
-        this.scene.fog = new THREE.Fog(0x164835, 5, 25); // Color, near, far
-        this.scene.background = new THREE.Color(0x154734);
+        this.scene.fog = new THREE.Fog(0x061224, 5, 25); // Color, near, far
+        this.scene.background = new THREE.Color(0x051022);
 
         this.environmentMap()
         this.setLights()
@@ -54,7 +54,7 @@ export default class Environment {
     setLights() {
     
         // Add directional light
-        this.topLight = new THREE.SpotLight(0xe6007d, 10)
+        this.topLight = new THREE.SpotLight(0xddffff, 10)
         this.topLight.position.set(0, 10, 2)
         this.topLight.target.position.set(0, 0, 0)
         this.topLight.angle = Math.PI / 3; // Angle of the topLight cone
@@ -64,7 +64,7 @@ export default class Environment {
         this.topLight.castShadow = true; // Enable shadows
         this.scene.add(this.topLight)
         // Add under light
-        this.underLight = new THREE.DirectionalLight(0xf59e24, .25)
+        this.underLight = new THREE.DirectionalLight(0x00ccff, .25)
         this.underLight.position.set(0, -5, 0)
         this.scene.add(this.underLight)
     

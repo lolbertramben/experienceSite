@@ -21,6 +21,10 @@ export default class Sizes extends EventEmitter {
                 this.trigger('key-3')
             } else if (e.key === 't') {
                 this.trigger('key-t')
+            } else if (e.key === 'u') {
+                this.trigger('key-u')
+            } else if (e.key === 'i') {
+                this.trigger('key-i')
             }
         })
 

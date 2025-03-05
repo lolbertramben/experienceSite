@@ -39,7 +39,6 @@ export default class MouseIndicator {
             this.mouseVehicle.position.y = (- (this.experience.mouse.y / this.experience.sizes.height) * 2 + 1) * 5.5
             this.mouseVehicle.position.z = 0
         } else if (this.mouseVehicle.position.distanceTo(new THREE.Vector3(0,0,0)) > 10 && this.experience.input.isMouseInactive) {
-            console.log('MouseIndicator will reset')
             this.mouseVehicle.position.x = 0;
             this.mouseVehicle.position.z = 0;
         } else if (this.experience.input.isMouseInactive) {

@@ -34,8 +34,8 @@ export default class SkyEnvironment {
 
         this.skyUniforms['turbidity'].value = 20;
         this.skyUniforms['rayleigh'].value = 4; //0.116 - 4
-        this.skyUniforms['mieCoefficient'].value = 0.0001; //Night sky 0.5
-        this.skyUniforms['mieDirectionalG'].value = 0.99; //Night sky 0.999999
+        this.skyUniforms['mieCoefficient'].value = 0.01; //Night sky 0.5
+        this.skyUniforms['mieDirectionalG'].value = 0.9999; //Night sky 0.999999
 
         this.parameters = {
             elevation: 30,
@@ -44,6 +44,7 @@ export default class SkyEnvironment {
     }
 
     renderSkyToTexture() {
+        this.renderer.toneMappingExposure = 0.75;
         this.renderer.setRenderTarget(this.skyRenderTarget);
         this.renderer.render(this.sky, this.camera);
         this.renderer.setRenderTarget(null);
@@ -52,7 +53,7 @@ export default class SkyEnvironment {
     updateSun() {
         this.parameters.elevation = map(this.experience.scrollProgress, 0, -1, 30, -5);
         this.currentValue = (30 - Math.min(30, this.parameters.elevation)) / 30;
-        this.currentRayleigh = (4 - 1) * this.currentValue + 1;
+        this.currentRayleigh = (6 - 1.5) * this.currentValue + 1.5;
         this.skyUniforms['rayleigh'].value = this.currentRayleigh;
 
         this.phi = THREE.MathUtils.degToRad(90 - this.parameters.elevation);

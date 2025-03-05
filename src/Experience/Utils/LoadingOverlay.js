@@ -1,5 +1,4 @@
 import * as THREE from 'three';
-import EventEmitter from './EventEmitter';
 import Experience from '../Experience';
 import { lerp } from './utils';
 
@@ -61,8 +60,8 @@ export default class LoadingOverlay {
     }
 
     update() {
-        this.overlayMaterial.uniforms.uAlpha.value = lerp(this.overlayMaterial.uniforms.uAlpha.value, 0, 0.05);
-        if(this.overlayMaterial.uniforms.uAlpha.value < 0.01) {
+        this.overlayMaterial.uniforms.uAlpha.value = lerp(this.overlayMaterial.uniforms.uAlpha.value, 0, 0.1);
+        if(this.overlayMaterial.uniforms.uAlpha.value < 0.05) {
             this.overlayMaterial.uniforms.uAlpha.value = 0;
             this.scene.remove(this.overlay);
         }

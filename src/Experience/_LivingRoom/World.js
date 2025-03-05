@@ -52,33 +52,17 @@ export default class World {
         // Show DOM elements
         this.DOMElements.classList.remove('hidden')
 
-        //this.toggleContext()
         this.setPostProcessing()
 
         // Listeners
         this.input.on('key-1', () => { 
-            this.camera.goToPos = this.cameraPositions.position1.position
-            this.camera.goToLookAt = this.cameraPositions.position1.lookAt
-            this.moveWithMouse = true
-            this.tvPlane.isFullscreen = false
-            this.experience.body.style.overflowY = 'hidden'
-            window.scrollTo(0, 0)
+            this.setting1()
          })
         this.input.on('key-2', () => { 
-            this.camera.goToPos = this.cameraPositions.position2.position
-            this.camera.goToLookAt = this.cameraPositions.position2.lookAt
-            this.moveWithMouse = true
-            this.tvPlane.isFullscreen = false
-            this.experience.body.style.overflowY = 'hidden'
-            window.scrollTo(0, 0)
+            this.setting2()
          })
         this.input.on('key-3', () => { 
-            this.camera.goToPos = this.cameraPositions.position3.position
-            this.camera.goToLookAt = this.cameraPositions.position3.lookAt
-            this.moveWithMouse = false
-            this.tvPlane.isFullscreen = true
-            this.experience.body.style.overflowY = 'auto'
-            window.scrollTo(0, 0)
+            this.setting3()
          })
         this.input.on('key-t', () => { 
             this.toggleContext()
@@ -98,20 +82,61 @@ export default class World {
         this.environment.toggle(this.onOff)
     }
 
-    sceneSettings() {
-        this.experience.renderer.instance.toneMappingExposure = 1.75;
-    }
-
     setPostProcessing() {
         this.renderPass = new RenderPass(this.scene, this.camera.instance)
         this.composer.addPass(this.renderPass)
         this.bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 0.01, 1, 0.99)
         this.composer.addPass(this.bloomPass)
-        this.composer.toneMappingExposure = 0.0
     }
 
     postProcessing() {
         this.composer.render()
+    }
+
+    setting1() {
+        this.camera.goToPos = this.cameraPositions.position1.position
+        this.camera.goToLookAt = this.cameraPositions.position1.lookAt
+        this.camera.lerpStep = 0.005
+        this.camera.lookAtLerpStep = 0.01
+        this.moveWithMouse = true
+        this.experience.body.style.overflowY = 'hidden'
+        this.dialogue.isHidden = false
+        this.experience.exposureGoTo = 1.75
+        window.scrollTo(0, 0)
+        this.tvPlane.isFullscreen = false
+        this.experience.isFullscreen = false
+        this.experience.fullScreenToggle()
+    }
+
+    setting2() {
+        this.camera.goToPos = this.cameraPositions.position2.position
+        this.camera.goToLookAt = this.cameraPositions.position2.lookAt
+        this.camera.lerpStep = 0.005
+        this.camera.lookAtLerpStep = 0.01
+        this.moveWithMouse = true
+        this.dialogue.isHidden = false
+        this.experience.exposureGoTo = 1.75
+        window.scrollTo(0, 0)
+        this.experience.resetVideo()
+        this.tvPlane.isFullscreen = false
+        this.experience.isFullscreen = false
+        this.experience.fullScreenToggle()
+        this.experience.body.style.overflowY = 'hidden'
+    }
+
+    setting3() {
+        this.camera.goToPos = this.cameraPositions.position3.position
+        this.camera.goToLookAt = this.cameraPositions.position3.lookAt
+        this.camera.lerpStep = 0.01
+        this.camera.lookAtLerpStep = 0.025
+        this.moveWithMouse = false
+        this.experience.body.style.overflowY = 'auto'
+        this.dialogue.isHidden = true
+        this.experience.exposureGoTo = 1
+        window.scrollTo(0, 0)
+        this.tvPlane.isFullscreen = true
+        this.experience.isFullscreen = true
+        this.experience.fullScreenToggle()
     }
 
 }

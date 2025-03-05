@@ -2,6 +2,7 @@ import * as THREE from "three";
 import Experience from "../Experience";
 import { lerp, wave } from "../Utils/utils";
 import { SpotLightMaterial } from '../Utils/Shaders/SpotLightMaterial'
+import { transitionMaterial } from "../Utils/Shaders/TransitionMaterial";
 
 export default class TVPlane {
 
@@ -14,10 +15,11 @@ export default class TVPlane {
         this.debug = this.experience.debug
         this.sunsetTexture = this.experience.renderTargetSunset.texture
         this.underWaterTexture = this.experience.renderTargetUnderWater.texture
+        this.depthTexture = this.experience.renderTargetSunset.depthTexture
         this.spotLightPosition = new THREE.Vector3(2.67, 1.325, 0.1)
         this.isFullscreen = false
         this.onOff = false
-
+        
         this.tvLightSettings = {
             angle: Math.PI / 3,
             intensityOn: 2,
@@ -62,59 +64,11 @@ export default class TVPlane {
                 transitionControl: { value: this.transitionControl },
                 uOnOff: { value: this.onOff ? 1 : 0 }
             },
-            vertexShader: `
-            uniform float transitionControl;
-
-            varying vec2 vUv;
-            void main() {
-                vUv = uv;
-                // Beregn de to gl_Position værdier
-                vec4 projectedPosition = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-                vec4 fullScreen = vec4(position, 1.0);
-    
-                // Interpolér mellem de to positioner baseret på transitionControl
-                gl_Position = mix(fullScreen, projectedPosition, transitionControl);
-            }
-        `,
-            fragmentShader: `
-            uniform sampler2D tex;
-            uniform sampler2D tex2;
-            uniform float progression;
-            uniform int transition;
-            uniform float transitionControl;
-            uniform int uOnOff;
-
-            varying vec2 vUv;
-
-            void main() {
-
-                vec4 _texture = texture2D(tex, vUv);
-                vec4 _texture2 = texture2D(tex2, vUv);
-
-
-                if(uOnOff == 0) {
-                    gl_FragColor = vec4(0.0);
-                } else {                
-                    vec4 finalTexture;
-                    if (transition == 0) { // HORIZONTAL
-                     finalTexture = mix(_texture2, _texture, step(progression, vUv.x));
-                    }
-                    if (transition == 1) { // VERTICAL
-                      finalTexture = mix(_texture2, _texture, step(progression, vUv.y));
-                    }
-                    gl_FragColor = finalTexture;
-                }
-
-                //gl_FragColor = texture2D(tex2, vUv);
-                    
-                    #include <tonemapping_fragment>
-                    #include <colorspace_fragment>
-            }
-        `
+            vertexShader: transitionMaterial.vertexShader,
+            fragmentShader: transitionMaterial.fragmentShader,
         });
     
         this.tvPlane = new THREE.Mesh(this.tvPlaneGeometry, this.tvPlaneMaterial)
-        //this.tvPlane.rotation.z = -Math.PI / 2
         this.tvPlane.rotation.y = -Math.PI / 2
         this.tvPlane.position.set(2.62, 1.375, 0)
         this.tvPlane.receiveShadow = true
@@ -188,9 +142,9 @@ export default class TVPlane {
         this.tvLight.angle = this.tvLightSettings.angle + superPosition * 0.8 - 0.25 * this.coneOnOffValue
 
         if (this.isFullscreen) {
-            this.transitionControl = lerp(this.transitionControl, 0, 0.005)
+            this.transitionControl = lerp(this.transitionControl, 0, 0.02)
         } else {
-            this.transitionControl = lerp(this.transitionControl, 1, 0.005)
+            this.transitionControl = lerp(this.transitionControl, 1, 0.01)
         }
         this.tvPlane.scale.x = 1 - 0.75/2 * this.transitionControl
         this.tvPlane.scale.y = 1 - 1.32/2 * this.transitionControl

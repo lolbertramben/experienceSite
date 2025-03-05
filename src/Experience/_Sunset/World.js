@@ -3,6 +3,7 @@ import WaterEnvironment from './Water.js'
 import SkyEnvironment from './Sky.js'
 import Iceberg from './Iceberg.js'
 import Bottle from './Bottle.js'
+import FaxeKondiFloat from './FaxeKondiFloat.js'
 
 export default class World2 {
 
@@ -20,21 +21,19 @@ export default class World2 {
         this.sky = new SkyEnvironment();
         this.iceberg = new Iceberg();
         this.bottle = new Bottle();
-
-        this.experience.renderer.instance.toneMappingExposure = 0.6;
+        this.faxeKondiFloat = new FaxeKondiFloat();
 
     }
 
     update() {
-        this.sky.updateSun()
-        this.water.update()
+        if(this.experience.isSunsetRendering) {
+            this.sky.updateSun()
+            this.water.update()
+        }
         this.camera.update()
         this.iceberg.update()
         this.bottle.update()
-    }
-
-    sceneSettings() {
-        this.experience.renderer.instance.toneMappingExposure = 0.6;
+        this.faxeKondiFloat.update()
     }
 
 

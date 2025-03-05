@@ -10,12 +10,12 @@ export default class Debug {
         if(this.active) {
             this.ui = new GUI()
         }
-        this.stats = new Stats();
-        document.body.appendChild(this.stats.dom);
+        //this.stats = new Stats();
+        //document.body.appendChild(this.stats.dom);
     }
 
     update() {
-            this.stats.update();
+        //this.stats.update();
     }
 
 }
